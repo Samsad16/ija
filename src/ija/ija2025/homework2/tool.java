@@ -1,5 +1,6 @@
 package ija.ija2025.homework2;
 
-public class tool {
-    
+public interface GameObserver {
+    boolean notified;
+    public void update(GameEvent e);
 }
