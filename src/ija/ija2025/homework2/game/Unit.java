@@ -21,6 +21,14 @@ public class Unit {
         return this.position;
     }
 
+    public String getType() {
+        return this.type;
+    }
+
+    public int getMaxMove() {
+        return this.max_move;
+    }
+
     @Override
     public String toString() {
         //position.toString uz dava [] kolem position
