@@ -37,4 +37,12 @@ public class Position {
         Position pos = (Position) obj;
         return ((this.row == pos.row) && (this.col == pos.col));
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 1;
+        hash = hash * 31 + this.row;
+        hash = hash * 31 + this.col;
+        return hash;
+    }
 }
