@@ -6,11 +6,12 @@ import ija.ija2025.homework2.common.Position;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.*;
 
 public class Game {
     private String[] map_definition;
     private List<GameObserver> observable = new ArrayList<>();
-    //private List<Unit> 
+    private List<Unit> units_in_game = new ArrayList<>();
     
     public Game(String[] mapDefinition) {
         this.map_definition = mapDefinition;
@@ -46,6 +47,9 @@ public class Game {
                 throw new IllegalArgumentException("Unsupported unit type.");
         }
         var new_unit = new Unit(type, player, i, j, 100, max_move);
+
+        units_in_game.add(new_unit);
+
         return new_unit;
     }
 
@@ -59,34 +63,54 @@ public class Game {
         return false;
     }
 
-    public List<Position> getReachableTiles(Position current_position) {
-        //bfs
-        //for
-        // Tank (Move 6). Start [0,0]. 
-            // Cesta do [1,1] (Les):
-            // 1. [0,0]->[0,1] (Plain, cost 1).
-            // 2. [0,1]->[1,1] (Forest, cost 2) -> Tanky v lese zpomalují!
-            // Celkem cost = 3.
+    public List<Position> getReachableTiles(Position current_position) {        
+        Unit current_unit;
 
-        // search unti on curent_position
-        // tmp = unit.max_move
-        // werjnvwkvw
+        // find unit in units in game
+        for (int index_unit = 0; index_unit < units_in_game.size(); index_unit++) {
+            if ((units_in_game.get(index_unit).getPosition().getRow() == current_position.getRow()) &&
+                (units_in_game.get(index_unit).getPosition().getCol() == current_position.getCol())) {
+                current_unit = units_in_game.get(index_unit);
+                break;
+            }
+        }
 
-        //int rows = mapDefinition.length;
-        //int cols = mapDefinition[0].split(" ").length;
-        
-        //for (int row = 0; row < ?, row++) {
-        //    for (int col = 0; col < ?; col++) {
-                //check distance == 1
-                //cost = ?
-                //if can move => getReachableTiles(row, col)
+        Queue<Position> queue = new LinkedList<>();
+        queue.add(current_position);
 
-                //"P P M",
-                //"P F W",
-                //"P P P"
-            //}
-        //}
+        //visited
+        List<Position> visited = new ArrayList<>();
 
-        return new ArrayList<>();
+        int[][] neighbors = {
+            {-1, 0},
+            {1, 0},
+            {0, -1},
+            {0, 1}
+        };
+        int max_rows = this.map_definition.length;
+        int max_cols = this.map_definition[0].split(" ").length;
+
+        //int current_max_move = current_unit.getMaxMove();
+
+        while (!queue.isEmpty()) {
+            Position current = queue.poll();
+
+            for (int direction = 0; direction < neighbors.length; direction++) {
+                int new_row = current.getRow() + neighbors[direction][0];
+                int new_col = current.getCol() + neighbors[direction][1];
+                if (new_row < 0 || new_row >= max_rows || new_col < 0 || new_col >= max_cols) {
+                    continue;
+                }
+
+                Position next_position = new Position(new_row, new_col);
+
+                if (!visited.contains(next_position)) {
+                    visited.add(next_position);
+                    queue.add(next_position);
+                }
+            }
+        }
+
+        return visited;
     }
 }
