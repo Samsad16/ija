@@ -1,3 +1,10 @@
+/******************************************************************
+ * Module responsible for creating Game instances. Supports       *
+ * loading a map either from a String array or from a CSV file.   *
+ *                                                                *
+ * Authors: Tereza Doláková, Samuel Smutný, Natália Václavíková   *
+*******************************************************************/
+
 package ija.ija2025.homework2.game;
 
 import java.io.IOException;
@@ -6,7 +13,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 public class GameFactory {
-    // map provided as lines
+    // Map provided as lines
     public static Game createGame(String[] mapDefinition) {
         if (mapDefinition == null || mapDefinition.length == 0) {
             throw new IllegalArgumentException("Map definition must not be null or empty.");
@@ -14,14 +21,14 @@ public class GameFactory {
         return new Game(mapDefinition);
     }
 
-    // load map from file
+    // Load map from file
     public static Game createGame(Path mapFile) {
         if (mapFile == null) {
             throw new IllegalArgumentException("Map file path must not be null.");
         }
-        // read file and convert to lines
+        // Read file and convert to lines
         try {
-            // input in CSV 
+            // Input provided in CSV 
             List<String> lines = Files.readAllLines(mapFile).stream()
                 .map(String::trim)
                 .filter(line -> !line.isEmpty())
