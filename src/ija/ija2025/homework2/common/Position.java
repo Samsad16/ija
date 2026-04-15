@@ -23,4 +23,18 @@ public class Position {
     public String toString() { 
         return "[" + row + "," + col + "]"; 
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Position)) {
+            return false;
+        }
+
+        Position pos = (Position) obj;
+        return ((this.row == pos.row) && (this.col == pos.col));
+    }
 }
