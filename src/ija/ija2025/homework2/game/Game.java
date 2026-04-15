@@ -1,23 +1,24 @@
 package ija.ija2025.homework2.game;
 
-import ija.ija2025.homework2.common.GameEvent;
-import ija.ija2025.homework2.tool.GameObserver;
-import ija.ija2025.homework2.common.Position;
-
-import java.util.List;
 import java.util.ArrayList;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+import ija.ija2025.homework2.common.GameEvent;
+import ija.ija2025.homework2.common.Position;
+import ija.ija2025.homework2.tool.GameObserver;
 
 public class Game {
-    private String[] map_definition;
-    private List<GameObserver> observable = new ArrayList<>();
-    private List<Unit> units_in_game = new ArrayList<>();
+    private final String[] map_definition;
+    private final List<GameObserver> observable = new ArrayList<>();
+    private final List<Unit> units_in_game = new ArrayList<>();
     
     public Game(String[] mapDefinition) {
         this.map_definition = mapDefinition;
     }
 
-    // Observery
+    // Observers
     public void addObserver(GameObserver g_o) {
         if(g_o != null) {
             observable.add(g_o);
@@ -53,10 +54,24 @@ public class Game {
         return new_unit;
     }
 
+    public String getPositionTerrain(Position position) {
+        String row = this.map_definition[position.getRow()];
+        String terrain_type = row.split(" ")[position.getCol()];
+        return terrain_type;
+    }
+
     public boolean moveUnit(Position from, Position to) {
         List<Position> available_pos = getReachableTiles(from);
         if (available_pos.contains(to)) {
-            from = to;
+
+            for (int index_unit = 0; index_unit < units_in_game.size(); index_unit++) {
+                if ((units_in_game.get(index_unit).getPosition().getRow() == from.getRow()) &&
+                    (units_in_game.get(index_unit).getPosition().getCol() == from.getCol())) {
+                    to = units_in_game.get(index_unit).getPosition();
+                    break;
+                }
+            }
+
             updateObservable(new GameEvent(from, to));
             return true;
         }
@@ -64,7 +79,7 @@ public class Game {
     }
 
     public List<Position> getReachableTiles(Position current_position) {        
-        Unit current_unit;
+        Unit current_unit = null;
 
         // find unit in units in game
         for (int index_unit = 0; index_unit < units_in_game.size(); index_unit++) {
@@ -90,10 +105,13 @@ public class Game {
         int max_rows = this.map_definition.length;
         int max_cols = this.map_definition[0].split(" ").length;
 
-        //int current_max_move = current_unit.getMaxMove();
+        int current_max_move = current_unit.getMaxMove();
 
         while (!queue.isEmpty()) {
             Position current = queue.poll();
+
+            //
+            Tile current_tile = new Tile(current, current_max_move);
 
             for (int direction = 0; direction < neighbors.length; direction++) {
                 int new_row = current.getRow() + neighbors[direction][0];
@@ -103,6 +121,18 @@ public class Game {
                 }
 
                 Position next_position = new Position(new_row, new_col);
+
+                //
+                String next_terrain = getPositionTerrain(next_position);
+                int new_tile_cost = current_tile.getTileCost(next_terrain, current_unit);
+
+                //
+                if (new_tile_cost < 0) {
+                    continue;
+                }
+
+                //
+                int remaining_move = current_tile.getRemainingMove() - new_tile_cost;
 
                 if (!visited.contains(next_position)) {
                     visited.add(next_position);
