@@ -29,6 +29,10 @@ public class Unit {
         return this.max_move;
     }
 
+    public void changePosition(Position new_position) {
+        this.position = new_position;
+    }
+
     @Override
     public String toString() {
         //position.toString uz dava [] kolem position

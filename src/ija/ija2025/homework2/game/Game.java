@@ -68,7 +68,7 @@ public class Game {
                 if ((units_in_game.get(index_unit).getPosition().getRow() == from.getRow()) &&
                     (units_in_game.get(index_unit).getPosition().getCol() == from.getCol())) {
                         
-                    to = units_in_game.get(index_unit).getPosition();
+                    units_in_game.get(index_unit).changePosition(to);
                     break;
                 }
             }
