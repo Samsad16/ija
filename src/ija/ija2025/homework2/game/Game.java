@@ -1,10 +1,10 @@
-/******************************************************************
- * Module representing the core game logic. Manages the board,    *
- * units and observers. Handles unit movement and pathfinding     *
- * using BFS to calculate reachable tiles.                        *
- *                                                                *
- * Authors: Tereza Doláková, Samuel Smutný, Natália Václavíková   *
-*******************************************************************/
+/*************************************************************************
+ * Module representing the core game logic. Manages the board, units and *
+ * observers. Handles unit movement and pathfinding using BFS to         *
+ * calculate reachable tiles.                                            *
+ *                                                                       *
+ * Authors: Tereza Doláková, Samuel Smutný (nettle), Natália Václavíková *
+**************************************************************************/
 
 package ija.ija2025.homework2.game;
 
@@ -137,7 +137,7 @@ public class Game {
         // Loop while there still are tiles in the queue
         while (!queue.isEmpty()) {
 
-            // Add the current tile to queue
+            // Get the current tile from queue
             current_tile = queue.poll();
 
             Position current = current_tile.getPosition();
@@ -178,7 +178,7 @@ public class Game {
                     reachable.add(next_position);
                     Tile new_tile = new Tile(next_position, remaining_move);
                     queue.add(new_tile);
-                } 
+                }
             }
         }
 

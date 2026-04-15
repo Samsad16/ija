@@ -1,10 +1,10 @@
-/******************************************************************
- * Helper class representing a tile on the game map. Stores the   *
- * tile position and the unit's remaining movement.               *
- * Used during pathfinding (BFS).                                 *
- *                                                                *
- * Authors: Tereza Doláková, Samuel Smutný, Natália Václavíková   *
-*******************************************************************/
+/*************************************************************************
+ * Helper class representing a tile on the game map. Stores the tile     *
+ * position and the unit's remaining movement.                           *
+ * Used during pathfinding (BFS).                                        *
+ *                                                                       *
+ * Authors: Tereza Doláková, Samuel Smutný (nettle), Natália Václavíková *
+**************************************************************************/
 
 package ija.ija2025.homework2.game;
 

@@ -1,9 +1,9 @@
-/******************************************************************
- * Module responsible for creating Game instances. Supports       *
- * loading a map either from a String array or from a CSV file.   *
- *                                                                *
- * Authors: Tereza Doláková, Samuel Smutný, Natália Václavíková   *
-*******************************************************************/
+/*************************************************************************
+ * Module responsible for creating Game instances. Supports loading a    *
+ * map either from a String array or from a CSV file.                    *
+ *                                                                       *
+ * Authors: Tereza Doláková, Samuel Smutný (nettle), Natália Václavíková *
+**************************************************************************/
 
 package ija.ija2025.homework2.game;
 

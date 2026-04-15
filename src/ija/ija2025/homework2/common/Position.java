@@ -1,10 +1,10 @@
-/******************************************************************
- * Module for representing a position on the game board defined   *
- * by rows and columns. Used for identifying locations of units   *
- * and terrain tiles.                                             *
- *                                                                *
- * Authors: Tereza Doláková, Samuel Smutný, Natália Václavíková   *
-*******************************************************************/
+/*************************************************************************
+ * Module for representing a position on the game board defined          *
+ * by rows and columns. Used for identifying locations of units          *
+ * and terrain tiles.                                                    *
+ *                                                                       *
+ * Authors: Tereza Doláková, Samuel Smutný (nettle), Natália Václavíková *
+**************************************************************************/
 
 package ija.ija2025.homework2.common;
 

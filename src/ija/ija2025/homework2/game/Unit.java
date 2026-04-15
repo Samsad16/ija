@@ -1,9 +1,9 @@
-/******************************************************************
- * Module representing a unit on the game board. Stores the       *
- * unit's type, owner, position, HP and maximum move range.       *
- *                                                                *
- * Authors: Tereza Doláková, Samuel Smutný, Natália Václavíková   *
-*******************************************************************/
+/*************************************************************************
+ * Module representing a unit on the game board. Stores the unit's type, *
+ * owner, position, HP and maximum move range.                           *
+ *                                                                       *
+ * Authors: Tereza Doláková, Samuel Smutný (nettle), Natália Václavíková *
+**************************************************************************/
 
 package ija.ija2025.homework2.game;
 

@@ -1,9 +1,9 @@
-/******************************************************************
- * Module representing a game event triggered when a unit         *
- * successfully moves.                                            *
- *                                                                *
- * Authors: Tereza Doláková, Samuel Smutný, Natália Václavíková   *
-*******************************************************************/
+/*************************************************************************
+ * Module representing a game event triggered when a unit                *
+ * successfully moves.                                                   *
+ *                                                                       *
+ * Authors: Tereza Doláková, Samuel Smutný (nettle), Natália Václavíková *
+**************************************************************************/
 
 package ija.ija2025.homework2.common;
 

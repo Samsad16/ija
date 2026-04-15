@@ -1,9 +1,9 @@
-/******************************************************************
- * Module defining the GameObserver interface. Observers          *
- * receive notifications when a game event occurs.                *
- *                                                                *
- * Authors: Tereza Doláková, Samuel Smutný, Natália Václavíková   *
-*******************************************************************/
+/*************************************************************************
+ * Module defining the GameObserver interface. Observers receive         *
+ * notifications when a game event occurs.                               *
+ *                                                                       *
+ * Authors: Tereza Doláková, Samuel Smutný (nettle), Natália Václavíková *
+**************************************************************************/
 
 package ija.ija2025.homework2.tool;
 
