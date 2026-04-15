@@ -67,6 +67,7 @@ public class Game {
             for (int index_unit = 0; index_unit < units_in_game.size(); index_unit++) {
                 if ((units_in_game.get(index_unit).getPosition().getRow() == from.getRow()) &&
                     (units_in_game.get(index_unit).getPosition().getCol() == from.getCol())) {
+                        
                     to = units_in_game.get(index_unit).getPosition();
                     break;
                 }
@@ -90,8 +91,11 @@ public class Game {
             }
         }
 
-        Queue<Position> queue = new LinkedList<>();
-        queue.add(current_position);
+        int current_max_move = current_unit.getMaxMove();
+
+        Queue<Tile> queue = new LinkedList<>();
+        Tile current_tile = new Tile(current_position, current_max_move);
+        queue.add(current_tile);
 
         //visited
         List<Position> visited = new ArrayList<>();
@@ -105,13 +109,11 @@ public class Game {
         int max_rows = this.map_definition.length;
         int max_cols = this.map_definition[0].split(" ").length;
 
-        int current_max_move = current_unit.getMaxMove();
-
         while (!queue.isEmpty()) {
-            Position current = queue.poll();
+            current_tile = queue.poll();
 
             //
-            Tile current_tile = new Tile(current, current_max_move);
+            Position current = current_tile.getPosition();
 
             for (int direction = 0; direction < neighbors.length; direction++) {
                 int new_row = current.getRow() + neighbors[direction][0];
@@ -134,9 +136,15 @@ public class Game {
                 //
                 int remaining_move = current_tile.getRemainingMove() - new_tile_cost;
 
+                //
+                if (remaining_move < 0) {
+                    continue;
+                }
+
                 if (!visited.contains(next_position)) {
                     visited.add(next_position);
-                    queue.add(next_position);
+                    Tile new_tile = new Tile(next_position, remaining_move);
+                    queue.add(new_tile);
                 }
             }
         }

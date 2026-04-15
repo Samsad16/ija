@@ -33,6 +33,10 @@ public class Tile {
         return cost;
     }
 
+    public Position getPosition() {
+        return this.position;
+    }
+
     public int getRemainingMove() {
         return this.remaining_move;
     }
